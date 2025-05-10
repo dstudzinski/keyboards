@@ -118,3 +118,5 @@ power on and off.
 | nice!nano V2 Controller      |    2     | I used clones                                                                                                                                 | [AliExpress](https://aliexpress.com/item/1005007426478606.html)                                                                                        |
 
 ---
+
+My config for ZMK (which is very similar to my Sweep config) can be found here: https://github.com/dstudzinski/zmk-config-redox/ 

@@ -19,3 +19,4 @@ Bill of Materials (BOM)
 Alternatives to nice!nano V2: https://github.com/joric/nrfmicro/wiki/Alternatives
 In another build I used `SuperMini NRF52840` from Tenstar Robot. Check [Controllers](../../../Controllers) directory in this repo for more options.
 
+My config for ZMK can be found here: https://github.com/dstudzinski/zmk-config

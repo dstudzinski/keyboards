@@ -235,5 +235,7 @@ You **can** test the left half without flashing the right half:
 - [“The REAL Ergonomic Keyboard Endgame!” - How To Design & Make A Totally Custom Keyboard](https://www.youtube.com/watch?v=UKfeJrRIcxw)
 - [ZMK Power Profiler](https://zmk.dev/power-profiler)
 
+My config for ZMK can be found here: https://github.com/dstudzinski/zmk-config
+
 ---
 
