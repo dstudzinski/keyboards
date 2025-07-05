@@ -86,10 +86,10 @@ Without that you controller could be positioned too low, and you won't be able t
 I positioned the controller flat on Kailh hot-swaps and A little from the edge of the PCB for security.
 
 For wires, I used jumper wires (Dupont cables) with cut out connectors.
-I did this for all rows and columns, making each PCB symmetrical in color.
+I did this for all rows and columns, making each PCB symmetrical.
 
 For the reset button (a tiny one, like in my Sweep build), I soldered additional wires and hot glued the button
-in the space where the programming pins had been. This lets me easily reset the board by pressing the button **through a
+in the space where the programming pins had been (which I removed). This lets me easily reset the board by pressing the button **through a
 hole in the case**.
 
 ---
