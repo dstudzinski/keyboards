@@ -91,6 +91,7 @@ I did this for all rows and columns, making each PCB symmetrical in color.
 For the reset button (a tiny one, like in my Sweep build), I soldered additional wires and hot glued the button
 in the space where the programming pins had been. This lets me easily reset the board by pressing the button **through a
 hole in the case**.
+
 ---
 
 ### Fit, Assembly, and Power
