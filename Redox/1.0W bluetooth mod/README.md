@@ -1,14 +1,29 @@
 ## Redox Wireless 1.0W: Modding from QMK Dongle to ZMK Bluetooth
 
-### Background
+### Note
+This is modification of my previous attempt which is available in that [commit](https://github.com/dstudzinski/keyboards/blob/201d09c51d18f172f4b2829675e2ad0dc4f05254/Redox/1.0W%20bluetooth%20mod/README.md)  
 
+At the time of the first attempt, I didn't know that usbc-usbc extension cables (which I used inside) is against specification.
+I had an issues with using usbc-usbc cables to connect my keyboard to the computer (my laptop has only usbc ports) to upload new firmware or to use keyboard as 'wired'.
+Keyboard worked only with usbc-usba cables so I have to connect it with usbc-usba cable and then use usba-usbc adapter or hub.
+Also, it was not charging with usbc-usbc cables.
+It was not a big issue as I'm using my keyboard mostly wirelessly, but it was inconvenient to use it to charge/flash.
+
+In this version I used a different approach and moved controller so cable is connected directly to it.
+Additionally, it exposed diodes so now it's visible that keyboard is eg charging so you won't try to charge switched off keyboard (when battery is disconnected from microcontroller).
+
+Text is adjusted so you don't have to read previous guide, but you can still check it if you have problem to see on a photos which cables goes where.
+Just keep in mind that in previous version left half has microcontroller 'upside down' to make cabling easier. Now both halves have microcontroller in the same orientation (so diodes are visible) but it means that cables in left half are more tangled.
+When you will compare photos from previous attempt please have microcontroller changed orientation in mind.
+
+### Background
 I own a Redox 1.0W, originally purchased from FalbaTech.  
 It's a really nice, well-made keyboard, but unfortunately, I can’t use it anymore due to interference issues on the
 2.4GHz band.  
 This board doesn't use Bluetooth; instead, it uses a custom dongle to communicate with the computer. The dongle connects
 via USB and both halves of the keyboard talk to this dongle.
 
-There is an old thread about these issues [here](https://github.com/mattdibi/redox-keyboard/issues/55)—unfortunately, I
+There is an old thread about these issues [here](https://github.com/mattdibi/redox-keyboard/issues/55) — unfortunately, I
 found it only after buying the keyboard. If I’d known about these problems earlier, I might have chosen the wired
 version, which can easily be converted to Bluetooth by replacing the Pro Micros with nice!nano controllers.
 
@@ -59,34 +74,23 @@ remove it quite forcefully.
 Naturally, the PCB was damaged in the process, but there are no shorts, and I don’t plan to revert to the old wireless
 design.
 
-Using the board’s schematic, I found where the Pro Micro connects on the wired version and soldered jumper wires (cut in
-half to keep female connectors on the other end).  
-I did this for all rows and columns, making each PCB symmetrical in color by cutting and using each half for opposite
-sides.
+Using the board’s schematic, I found where the Pro Micro connects on the wired version.
 
-To connect to the nice!nano-compatible controllers, I used right-angle header pins (see the `controllers` directory in
-the repo for details about alternatives), making the assembly as flat as possible.  
-This way, I can easily connect and disconnect the controller—and so far, I haven’t had any connectivity problems.  
-On one controller, the whole row of pins is soldered. On the other, I used individual pins (removed from the plastic
-strip), soldering only the necessary connections.
+I covered PCB with electrical tape to prevent shorts where the controller is placed.
+Then, I used hot glue to attach the nice!nano-compatible controller (I used clones, which are cheaper - see the `controllers` directory in
+the repo for details about alternatives) to the PCB. One glue 'drop' is under controller socked and glues controller directly to the PCB.
+Second drop is and the end of the controller and glues it to the electrical tape so it should be easy to remove it in the future if needed.
 
-For the reset button (a tiny one, like in my Sweep build), I soldered additional jumper wires and hot glued the button
+When you glue the controller attach usbc cable to it but the one with the thickest plastic connector you have.
+Without that you controller could be positioned too low, and you won't be able to plug in the cable.
+I positioned the controller flat on Kailh hot-swaps and A little from the edge of the PCB for security.
+
+For wires, I used jumper wires (Dupont cables) with cut out connectors.
+I did this for all rows and columns, making each PCB symmetrical in color.
+
+For the reset button (a tiny one, like in my Sweep build), I soldered additional wires and hot glued the button
 in the space where the programming pins had been. This lets me easily reset the board by pressing the button **through a
 hole in the case**.
-
-I also purchased USB-C female and male connectors. I used these to create a very short USB-C cable:
-
-- The male end connects to the controller.
-- The female end is hot glued where the battery used to be—hidden, but still easy to access for charging.
-- This USB socket should be glued slightly above the PCB, so the cable’s connector doesn’t push against the wooden case,
-  making it hard to plug in (which could also put stress on the connector).
-
-**NOTE:** I'm not sure why, but when I use a long USB-C to USB-C cable, the controller isn’t detected by my computer and
-I can't copy new firmware to it. However, if I connect the long cable directly to the controller—bypassing my short,
-homemade USB-C cable—everything works as expected.
-This means that, due to my short USB-C extension inside the keyboard, I need to use shorter cables between the keyboard
-and the computer whenever I want to upload new firmware.
-
 ---
 
 ### Fit, Assembly, and Power
@@ -101,8 +105,11 @@ cover to gain around 1mm.
 For power, I bought small 3mm thick batteries. Using ZMK’s power profiler, I estimate about 1 month of battery life for
 the “central” half and more than 7 months for the “peripheral” half.
 
-The battery is handwired to the controller with jumper wires, and I retained the existing switch to turn the battery
+The battery is handwired to the controller with wires, and I retained the existing switch to turn the battery
 power on and off.
+
+Before putting the PCBs into the case I covered part of the controller with electrical tape to prevent shorts by accidental touching of the controller during cable plugging.
+Blue diode is bright so light is still visible through the holes between tape and controller, so I know that keyboard is charging.
 
 ---
 
@@ -112,9 +119,7 @@ power on and off.
 |------------------------------|:--------:|-----------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Battery                      |    2     | Li-Pol Akyga 320mAh 1S 3.7V 40x30x3mm (you can see smaller 110mAh 301330 battery from Sweep design on some photos which was used for testing) | [Botland](https://botland.store/battery-li-pol-1s-37-v/12207-akyga-li-pol-battery-320mah-1s-37v-jst-bec-connector-socket-40x30x3mm-5904422318857.html) |
 | Reset button                 |    2     | B3U-1000P 4x2.5mm (legs) or 3x2.5mm (no legs), 1.6mm height                                                                                   | [AliExpress](https://aliexpress.com/item/1005003045038291.html)                                                                                        |
-| Jumper wires (Dupont cables) |    20    | 20cm female-to-female; per board: 12 half-length + 4 full-length (reset & battery), total of 20 for both boards                               | [AliExpress](https://aliexpress.com/item/1005007072081464.html)                                                                                        |
-| Right-angle pin headers      |    4     | Four strips, each with 13 pins; covers both controllers on both sides. 16 pins are used per controller (32 total)                             | [AliExpress](https://aliexpress.com/item/1005003646655689.html)                                                                                        |
-| USB-C F+M connectors pair    |    2     | Two pairs (four pieces): two female and two male connectors                                                                                   | [AliExpress](https://aliexpress.com/item/1005007458786256.html)                                                                                        |
+| Jumper wires (Dupont cables) |    32    | 20cm female-to-female; 16 cables per board (maybe less as sometimes you can use part of the cable from the other side)                        | [AliExpress](https://aliexpress.com/item/1005007072081464.html)                                                                                        |
 | nice!nano V2 Controller      |    2     | I used clones                                                                                                                                 | [AliExpress](https://aliexpress.com/item/1005007426478606.html)                                                                                        |
 
 ---
